@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  background-image: radial-gradient(rgba(188, 191, 192, 0.1) 5%, transparent 0);
+  background-size: 24px 24px;
+}
+
+::-webkit-scrollbar {
+  background-color: #000;
+}
+
+.circleContainer {
+  position: relative;
+
+  margin-top: 100px;
+}
+
+.circle {
+  height: 1550%;
+
+  width: 120%;
+
+  left: -10%;
+
+  border-radius: 0 0 50% 50%;
+
+  background-color: white;
+
+  z-index: 1;
+
+  position: absolute;
+
+  box-shadow: 0px 60px 50px rgba(0, 0, 0, 0.748);
+}
+
+.workTogetherLink {
+  position: relative;
+}
+.workTogetherLink::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+.workTogetherLink:hover::before {
+  transform: scaleX(1);
+}
+
+.getInTouch {
+  border-radius: 3em;
+
+  border: 1px solid rgb(136, 136, 136);
+
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 15px 60px 15px 60px;
+}
