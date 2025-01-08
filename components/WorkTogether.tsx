@@ -46,12 +46,10 @@
 //   )
 // }
 import React from "react";
-import Marquee from "react-fast-marquee";
 import { Space_Grotesk } from "next/font/google";
-import RetroGrid from "./ui/retro-grid";
 import { workTogetherlinks } from "@/constants";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 
 import { useRef } from "react";
 type Props = {};

@@ -1,6 +1,6 @@
 // 'use client';
 // import { useEffect } from 'react';
-// import { motion, useMotionValue, useSpring } from 'framer-motion';
+// import { motion, useMotionValue, useSpring } from "motion/react";
 
 // export default function index({stickyElement}) {
 

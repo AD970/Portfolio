@@ -36,7 +36,7 @@ export function Portfolio() {
             <div className="space-y-2 text-base-content font-bold">
               <ul>
                 <Reveal>
-                  <li>BE: /yourname</li>
+                  <li>TIK: @_straycat</li>
                 </Reveal>
                 <Reveal>
                   <li>IG: @yourname</li>

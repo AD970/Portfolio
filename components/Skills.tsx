@@ -1,7 +1,7 @@
 // "use client";
 // import Reveal from "./motion/Reveal";
 // import { useRef } from "react";
-// import { motion, useInView } from "framer-motion";
+// import { motion, useInView } from "motion/react";
 
 // interface Skill {
 //   name: string;
@@ -84,7 +84,7 @@
 "use client";
 import Reveal from "./motion/Reveal";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 
 interface Skill {
   name: string;
