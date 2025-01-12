@@ -45,13 +45,14 @@
 //       </div>
 //   )
 // }
-import React from "react";
+import React, { useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import { workTogetherlinks } from "@/constants";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 
 import { useRef } from "react";
+import WorkTogetherModal from "./ui/WorkTogetherModal";
 type Props = {};
 
 const space_Grotesk = Space_Grotesk({
@@ -68,11 +69,14 @@ export default function WorkTogether({}: Props) {
   const xFirstText = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"]);
   const xSecondText = useTransform(scrollYProgress, [0, 1], ["50%", "0%"]);
   const getInTouch = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
+  const [isOpen,setIsOpen] = useState(false)
+  const onClose = () => {
+    setIsOpen(false)
+  }
   return (
     <div ref={containerRef} className="bg-[#151515]  relative min-h-screen">
       <div className="flex justify-center items-center w-full ">
-        <motion.div className="   pt-32 text-center space-y-8">
+        <motion.div  className=" cursor-pointer   pt-32 text-center space-y-8" onClick={() => setIsOpen(true)}>
           <motion.h1
             style={{ x: xFirstText }}
             className={`text-6xl text-white font-bold ${space_Grotesk.className}`}
@@ -116,6 +120,9 @@ export default function WorkTogether({}: Props) {
           </ul>
         </div>
       </div>
+    <AnimatePresence>
+      {isOpen && <WorkTogetherModal isOpen={isOpen} onClose={() => setIsOpen(false)} /> }
+    </AnimatePresence>
     </div>
   );
 }

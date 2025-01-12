@@ -2,8 +2,6 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import ReactLenis from "lenis/react";
-import SectionAnimation from "./motion/SectionAnimation";
 
 const services = [
   {
@@ -74,7 +72,7 @@ export function Services() {
   }, [scrollYProgress]);
 
   return (
-    // <ReactLenis root options={{ lerp: 0.1 }}>
+    
     <div
       ref={containerRef}
       className="md:min-h-screen flex flex-col text-black md:flex-row bg-gray-200"
@@ -179,6 +177,5 @@ export function Services() {
         </div>
       </div>
     </div>
-    // </ReactLenis>
   );
 }

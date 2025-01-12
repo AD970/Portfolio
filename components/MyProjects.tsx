@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useInView } from "motion/react";
-import { ReactLenis } from "lenis/react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { Parallax } from "react-parallax";
@@ -50,12 +49,7 @@ export default function MyProjects({}: Props) {
       >
         <p className="text-white text-xs">View</p>
       </motion.div>
-      <ReactLenis
-        root
-        options={{
-          lerp: 0.1,
-        }}
-      >
+     
         <section
           id="projects"
           className="mx-auto max-w-5xl px-4 py-48 text-white"
@@ -92,11 +86,8 @@ export default function MyProjects({}: Props) {
             onHoverStart={() => setHoveringImage(true)}
             onHoverEnd={() => setHoveringImage(false)}
           />
-          {/* <NftProject
-            onHoverStart={() => setHoveringImage(true)}
-            onHoverEnd={() => setHoveringImage(false)} /> */}
+          
         </section>
-      </ReactLenis>
     </motion.div>
   );
 }
@@ -155,46 +146,3 @@ const ProjectItem = ({
     </motion.div>
   );
 };
-
-// const NftProject = ({
-
-//   onHoverStart,
-//   onHoverEnd,
-// }: {
-//   onHoverStart: () => void;
-//   onHoverEnd: () => void;
-// }) => {
-//   return (
-//     <motion.div
-//       initial={{ y: 48, opacity: 0 }}
-//       whileInView={{ y: 0, opacity: 1 }}
-//       transition={{ ease: "easeInOut", duration: 0.75 }}
-//       className={`mb-9 flex flex-col pb-9 bg-white items-center sm:items-start  md:p-0 md:px-8  `}
-//     >
-//       <div className="">
-//         <Link href={"/projects"}>
-//           <motion.div
-//             onHoverStart={onHoverStart}
-//             onHoverEnd={onHoverEnd}
-//             className={` relative rounded-md overflow-hidden  group  md:h-[500px] sm:h-[400px] h-[200px] p-4
-//                ${"lg:w-[900px] md:w-[700px] sm:w-[600px]  "}`}
-//           >
-//             {/* Darkened hover effect */}
-//             <Parallax bgImage={'/nft-seller.png'} strength={70}>
-//               <div
-//
-//                 className={`relative rounded-md  overflow-hidden group  md:h-[400px] sm:h-[400px] h-[200px]
-//                  lg:w-[900px] md:w-[700px] sm:w-[600px`}
-//               ></div>
-//             </Parallax>
-//             <motion.div className="absolute top-0 left-0 h-full w-full bg-black opacity-0 group-hover:opacity-50 transition-opacity" />
-//           </motion.div>
-//         </Link>
-//         <p className="mt-4 text-zinc-50 md:px-0">Nft seller app</p>
-//         <p className="text-sm uppercase  md:px-0 text-zinc-500">
-//           {"Frontend development, UI design"}
-//         </p>
-//       </div>
-//     </motion.div>
-//   );
-// };

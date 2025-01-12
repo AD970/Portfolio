@@ -1,38 +1,38 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Landing from "@/components/Landing";
 import MovingIcons from "@/components/MovingIcons";
 import { Portfolio } from "@/components/Portfolio";
 import { MySkills } from "@/components/Skills";
 import MyProjects from "@/components/MyProjects";
-import { ReactLenis } from "lenis/react";
 import WorkTogether from "@/components/WorkTogether";
 import ServicesContainer from "@/components/Services";
 import SectionAnimation from "@/components/motion/SectionAnimation";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, useInView } from "motion/react";
-import { motion } from "motion/react";
-import { MenuIcon } from "lucide-react";
-import Sidebar from "./Sidebar";
+
 import PreLoader from "./PreLoader";
 
 type Props = {};
 
 export default function Container({}: Props) {
   const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
+  
+   
+
+    // Cleanup on unmount
+   
     if (isLoading) {
       document.body.style.overflow = "hidden";
     }
     setTimeout(() => {
       setIsLoading(false);
       document.body.style.overflow = "";
-    }, 2000);
+    }, 100);
   }, []);
   return (
-    <div>
-      <ReactLenis root options={{ lerp: 0.05 }}>
+    <div ref={containerRef}    id="scroll-container">
         <AnimatePresence mode="wait">
           {isLoading && <PreLoader />}
         </AnimatePresence>
@@ -55,9 +55,9 @@ export default function Container({}: Props) {
           <div className="overflow-hidden">
             <SectionAnimation backgroundColor="bg-[#151515]" />
             <WorkTogether />
+            
           </div>
         </div>
-      </ReactLenis>
     </div>
   );
 }

@@ -19,7 +19,7 @@
     "date-fns-tz": "^3.2.0",
     "depcheck": "^1.4.7",
     "gsap": "^3.12.5",
-    "lenis": "^1.1.18",
+    "lenis": "^1.1.19",
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.464.0",
     "mini-svg-data-uri": "^1.4.4",
