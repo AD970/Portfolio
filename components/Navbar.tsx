@@ -201,9 +201,9 @@ const MobileNav = ({
   useEffect(() => {
     // Prevent scrolling when the nav is open
     if (isNavOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflowY = "";
     }
 
     // Cleanup function to restore default behavior

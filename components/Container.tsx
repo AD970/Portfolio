@@ -9,7 +9,8 @@ import WorkTogether from "@/components/WorkTogether";
 import ServicesContainer from "@/components/Services";
 import SectionAnimation from "@/components/motion/SectionAnimation";
 import { AnimatePresence, useInView } from "motion/react";
-
+import { cancelFrame,frame } from "motion/react";
+import Lenis from 'lenis'
 import PreLoader from "./PreLoader";
 
 type Props = {};
@@ -20,9 +21,31 @@ export default function Container({}: Props) {
   useEffect(() => {
   
    
+    const lenis = new Lenis({
+     autoRaf: true,
+     lerp: 0.05
+    });
+    
+    const observerCallback = (mutations:MutationRecord[]) =>{
+        mutations.forEach((mutation) => {
+            if(mutation.attributeName === 'style'){
+                const overflowY = document.body.style.overflowY;
+                if(overflowY === "hidden"){
+                    lenis.stop();
+                }else{
+                    lenis.start();
+                }
+            }
+        })
+    }
 
-    // Cleanup on unmount
-   
+    const observer = new MutationObserver(observerCallback)
+
+    observer.observe(document.body,{
+        attributes: true,
+        attributeFilter: ['style']
+    })
+
     if (isLoading) {
       document.body.style.overflow = "hidden";
     }
@@ -30,8 +53,14 @@ export default function Container({}: Props) {
       setIsLoading(false);
       document.body.style.overflow = "";
     }, 100);
+
+    return () => {
+        observer.disconnect();
+        lenis.destroy()
+      };
   }, []);
   return (
+    
     <div ref={containerRef}    id="scroll-container">
         <AnimatePresence mode="wait">
           {isLoading && <PreLoader />}

@@ -127,7 +127,7 @@ useEffect(() => {
 
 
   return (
-     <div className='relative'>
+     <div data-lenis-prevent className='relative'>
 
     <div className='h-screen w-screen bg-black p-12   bg-opacity-50 fixed top-0 left-0 z-50' onClick={onClose}>
     <motion.div 

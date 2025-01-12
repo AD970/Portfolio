@@ -74,3 +74,9 @@ body {
 
   padding: 15px 60px 15px 60px;
 }
+
+
+
+html{
+  scrollbar-width: 0;
+}
