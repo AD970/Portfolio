@@ -9,16 +9,22 @@ import WorkTogether from "@/components/WorkTogether";
 import ServicesContainer from "@/components/Services";
 import SectionAnimation from "@/components/motion/SectionAnimation";
 import { AnimatePresence, useInView } from "motion/react";
-import { cancelFrame,frame } from "motion/react";
+import { cancelFrame,frame,type frameData } from "motion/react";
 import Lenis from 'lenis'
 import PreLoader from "./PreLoader";
-
+import { ReactLenis, type LenisRef } from 'lenis/react';
 type Props = {};
 
 export default function Container({}: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null)
+  const lenisRef = useRef<LenisRef | null>(null);
   useEffect(() => {
+    function update(time: typeof frameData) {
+        lenisRef.current?.lenis?.raf(time.timestamp);
+      }
+  
+      frame.update(update, true);
   
    
     const lenis = new Lenis({
@@ -56,11 +62,22 @@ export default function Container({}: Props) {
 
     return () => {
         observer.disconnect();
-        lenis.destroy()
+        cancelFrame(update)
       };
   }, []);
   return (
-    
+    <ReactLenis
+    root
+    options={{
+      autoRaf: false,
+      duration: 1.5,
+      lerp: 0.1,
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+    }}
+    ref={lenisRef}
+  >
+
     <div ref={containerRef}    id="scroll-container">
         <AnimatePresence mode="wait">
           {isLoading && <PreLoader />}
@@ -88,6 +105,7 @@ export default function Container({}: Props) {
           </div>
         </div>
     </div>
+        </ReactLenis>
   );
 }
 
