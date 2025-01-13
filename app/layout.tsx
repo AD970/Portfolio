@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import Navbar from "@/components/Navbar";
-
+import { Toaster } from "@/components/ui/toaster";
 const montserrat = Montserrat({
   subsets: ["latin"], // Specify the subsets you need
   weight: ["400", "700"], // Add specific weights if needed
@@ -36,6 +36,7 @@ export default function RootLayout({
       >
         <Navbar />
         <div className="">{children}</div>
+        <Toaster />
       </body>
     </html>
   );

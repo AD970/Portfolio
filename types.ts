@@ -9,3 +9,12 @@ export type ProjectType = {
   imageWidth: string;
   imageHeight: string;
 };
+
+
+
+export type Email = {
+  services: string[] ,
+  budget: string,
+  formData: FormData,
+
+}

@@ -12,23 +12,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./Dialog"
+import { SendEmail } from '@/_actions/Contact';
+import { useToast } from '@/hooks/use-toast';
+import { useFormStatus } from 'react-dom';
 
 type Props = {
-    isOpen: boolean;
+  isOpen: boolean;
     onClose: () => void;
   }
   
-
-export default function WorkTogetherModal({
+  
+  export default function WorkTogetherModal({
     isOpen,
     onClose,
     
-}: Props) {
-  const services = ['FrontEnd', 'Backend', 'UI/UX design', 'Other'];
-  const Budgets = ['Under $20', '$20-$50', '$50-$100', '$100+'];
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [selectedBudget, setSelectedBudget] = useState<string>();
+  }: Props) {
+    const services = ['FrontEnd', 'Backend', 'UI/UX design', 'Other'];
+    const Budgets = ['Under $20', '$20-$50', '$50-$100', '$100+'];
+  const [selectedServices, setSelectedServices] = useState<string[]>(['']);
+  const [selectedBudget, setSelectedBudget] = useState<string>('');
   const modalRef = useRef<HTMLDivElement>(null)
+  const {toast} = useToast()
   
   function toggleService(newService: string) {
     setSelectedServices((prevServices) => {
@@ -43,6 +47,31 @@ export default function WorkTogetherModal({
   }
   function toggleBudget(newBudget: string) {
    setSelectedBudget(newBudget)
+  }
+
+
+ async function HandleSubmit(e: React.FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget)
+    
+    const response = await SendEmail({ 
+      formData,
+      services: selectedServices,
+      budget: selectedBudget
+    })
+
+    if(response.success){
+      toast({
+        description: response.message,
+      })
+    }
+
+    if(response.error){
+      toast({
+        description: response.message,
+        variant: 'destructive'
+      })
+    }
   }
 useEffect(() => {
   
@@ -112,16 +141,21 @@ useEffect(() => {
 
 
     const InformationSection = () => {
-      
+      const {pending} = useFormStatus()
       return(
+        <form onSubmit={HandleSubmit}>
+
         <div className="flex flex-col gap-2" ref={modalRef}>
           <h4 className='font-bold'> Your Information</h4>
           <div className="flex  gap-4 w-full">
-          <input type="text" placeholder="Your name " className="input  placeholder:text-xs input-bordered text-xs  w-full max-w-xs  " />
-          <input type="text" placeholder="Your email" className="input input-bordered  text-xs w-full max-w-xs placeholder:text-xs " />
+          <input type="text" name='user_name' placeholder="Your name " className="input  placeholder:text-xs input-bordered text-xs  w-full max-w-xs  " />
+          <input type="email" name ='user_email' placeholder="Your email" className="input input-bordered  text-xs w-full max-w-xs placeholder:text-xs " />
                     </div>
-                    <textarea className='textarea textarea-bordered w-full min-h-36 text-xs placeholder:text-xs' placeholder='Tell me more about your project' />
+                    <textarea name="user_message" className='textarea textarea-bordered w-full min-h-36 text-xs placeholder:text-xs' placeholder='Tell me more about your project' />
         </div>
+        <button disabled={pending } className='btn w-32  md:btn-md btn-primary mt-4'>Submit</button>
+
+        </form>
       )
     }
 
@@ -148,7 +182,6 @@ useEffect(() => {
         <ServiceSection />
         <BudgetSection />
         <InformationSection />
-        <button className='btn w-32  md:btn-md btn-primary'>Submit</button>
         <div className="text-xs">
 
         <div className="divider"></div>
