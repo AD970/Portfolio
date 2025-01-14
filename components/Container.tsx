@@ -9,48 +9,47 @@ import WorkTogether from "@/components/WorkTogether";
 import ServicesContainer from "@/components/Services";
 import SectionAnimation from "@/components/motion/SectionAnimation";
 import { AnimatePresence, useInView } from "motion/react";
-import { cancelFrame,frame,type frameData } from "motion/react";
-import Lenis from 'lenis'
+import { cancelFrame, frame, type frameData } from "motion/react";
+import Lenis from "lenis";
 import PreLoader from "./PreLoader";
-import { ReactLenis, type LenisRef } from 'lenis/react';
+import { ReactLenis, type LenisRef } from "lenis/react";
 type Props = {};
 
 export default function Container({}: Props) {
   const [isLoading, setIsLoading] = useState(true);
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<LenisRef | null>(null);
   useEffect(() => {
     function update(time: typeof frameData) {
-        lenisRef.current?.lenis?.raf(time.timestamp);
-      }
-  
-      frame.update(update, true);
-  
-   
-    const lenis = new Lenis({
-     autoRaf: true,
-     lerp: 0.05
-    });
-    
-    const observerCallback = (mutations:MutationRecord[]) =>{
-        mutations.forEach((mutation) => {
-            if(mutation.attributeName === 'style'){
-                const overflowY = document.body.style.overflowY;
-                if(overflowY === "hidden"){
-                    lenis.stop();
-                }else{
-                    lenis.start();
-                }
-            }
-        })
+      lenisRef.current?.lenis?.raf(time.timestamp);
     }
 
-    const observer = new MutationObserver(observerCallback)
+    frame.update(update, true);
 
-    observer.observe(document.body,{
-        attributes: true,
-        attributeFilter: ['style']
-    })
+    const lenis = new Lenis({
+      autoRaf: true,
+      lerp: 0.05,
+    });
+
+    const observerCallback = (mutations: MutationRecord[]) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "style") {
+          const overflowY = document.body.style.overflowY;
+          if (overflowY === "hidden") {
+            lenis.stop();
+          } else {
+            lenis.start();
+          }
+        }
+      });
+    };
+
+    const observer = new MutationObserver(observerCallback);
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["style"],
+    });
 
     if (isLoading) {
       document.body.style.overflow = "hidden";
@@ -61,24 +60,23 @@ export default function Container({}: Props) {
     }, 100);
 
     return () => {
-        observer.disconnect();
-        cancelFrame(update)
-      };
+      observer.disconnect();
+      cancelFrame(update);
+    };
   }, []);
   return (
     <ReactLenis
-    root
-    options={{
-      autoRaf: false,
-      duration: 1.5,
-      lerp: 0.1,
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-    }}
-    ref={lenisRef}
-  >
-
-    <div ref={containerRef}    id="scroll-container">
+      root
+      options={{
+        autoRaf: false,
+        duration: 1.5,
+        lerp: 0.1,
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+      }}
+      ref={lenisRef}
+    >
+      <div ref={containerRef} id="scroll-container">
         <AnimatePresence mode="wait">
           {isLoading && <PreLoader />}
         </AnimatePresence>
@@ -101,37 +99,36 @@ export default function Container({}: Props) {
           <div className="overflow-hidden">
             <SectionAnimation backgroundColor="bg-[#151515]" />
             <WorkTogether />
-            
           </div>
         </div>
-    </div>
-        </ReactLenis>
+      </div>
+    </ReactLenis>
   );
 }
 
-    // const buttonRef = useRef<HTMLDivElement>(null);
-    // const isInView = useInView(buttonRef,{amount: 'some'});
-    // const [prevScrollY, setPrevScrollY] = useState(0);
-    // const [isVisible, setIsVisible] = useState(true);
-    // const [isSide, setIsSide] = useState(false);
-    //   useEffect(() => {
-    //     const handleScroll = () => {
-    //       const currentScrollY = window.scrollY;
-  
-    //       if (currentScrollY > prevScrollY && currentScrollY > 50) {
-    //         // Hide navbar when scrolling down
-    //         setIsVisible(false);
-    //       } else {
-    //         // Show navbar when scrolling up
-    //         setIsVisible(true);
-    //       }
-  
-    //       setPrevScrollY(currentScrollY);
-    //     };
-  
-    //     window.addEventListener("scroll", handleScroll);
-  
-    //     return () => {
-    //       window.removeEventListener("scroll", handleScroll);
-    //     };
-    //   }, [prevScrollY]);
+// const buttonRef = useRef<HTMLDivElement>(null);
+// const isInView = useInView(buttonRef,{amount: 'some'});
+// const [prevScrollY, setPrevScrollY] = useState(0);
+// const [isVisible, setIsVisible] = useState(true);
+// const [isSide, setIsSide] = useState(false);
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const currentScrollY = window.scrollY;
+
+//       if (currentScrollY > prevScrollY && currentScrollY > 50) {
+//         // Hide navbar when scrolling down
+//         setIsVisible(false);
+//       } else {
+//         // Show navbar when scrolling up
+//         setIsVisible(true);
+//       }
+
+//       setPrevScrollY(currentScrollY);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, [prevScrollY]);

@@ -10,11 +10,8 @@ export type ProjectType = {
   imageHeight: string;
 };
 
-
-
 export type Email = {
-  services: string[] ,
-  budget: string,
-  formData: FormData,
-
-}
+  services: string[];
+  budget: string;
+  formData: FormData;
+};

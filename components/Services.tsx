@@ -72,7 +72,6 @@ export function Services() {
   }, [scrollYProgress]);
 
   return (
-    
     <div
       ref={containerRef}
       className="md:min-h-screen flex flex-col text-black md:flex-row bg-gray-200"

@@ -53,9 +53,12 @@ export default function PreLoader() {
     // Handle word transitions
     if (index === words.length - 1) return;
 
-    const timeout = setTimeout(() => {
-      setIndex(index + 1);
-    }, index === 0 ? 1000 : 150);
+    const timeout = setTimeout(
+      () => {
+        setIndex(index + 1);
+      },
+      index === 0 ? 1000 : 150,
+    );
 
     return () => clearTimeout(timeout);
   }, [index]);
@@ -98,7 +101,13 @@ export default function PreLoader() {
             {words[index]}
           </motion.p>
           <svg className="absolute top-0 w-full h-[calc(100%+300px)] ">
-            <motion.path variants={curve} initial="initial" exit="exit" d={initialPath} style={{ fill: '#141516' }} />
+            <motion.path
+              variants={curve}
+              initial="initial"
+              exit="exit"
+              d={initialPath}
+              style={{ fill: "#141516" }}
+            />
           </svg>
         </>
       )}

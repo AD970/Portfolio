@@ -49,45 +49,43 @@ export default function MyProjects({}: Props) {
       >
         <p className="text-white text-xs">View</p>
       </motion.div>
-     
-        <section
-          id="projects"
-          className="mx-auto max-w-5xl px-4 py-48 text-white"
+      <section
+        id="projects"
+        className="mx-auto max-w-5xl px-4 py-48 text-white"
+      >
+        <motion.h1
+          initial={{ y: 48, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ ease: "easeInOut", duration: 0.75 }}
+          className="mb-20 md:text-5xl lg:text-6xl text-center text-4xl font-black uppercase text-zinc-50"
         >
-          <motion.h1
-            initial={{ y: 48, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ ease: "easeInOut", duration: 0.75 }}
-            className="mb-20 md:text-5xl lg:text-6xl text-center text-4xl font-black uppercase text-zinc-50"
-          >
-            Projects
-          </motion.h1>
-        </section>
-        <section className="flex flex-col gap-8 md:gap-32">
-          <ProjectItem
-            text="NFT App"
-            image="/nft-seller.png"
-            tags={["Frontend development", "UI design"]}
-            direction="items-start"
-            styles="md:items-start"
-            imageHeight="md:h-[500px] sm-[400px] h-[200px]"
-            imageWidth="md:w-[900px] sm:w-[600px] w-full"
-            onHoverStart={() => setHoveringImage(true)}
-            onHoverEnd={() => setHoveringImage(false)}
-          />
-          <ProjectItem
-            text="Brew Cafe"
-            image="/BrewCafe.png"
-            tags={["Frontend development", "UI design"]}
-            direction="items-end"
-            styles="lg:items-end  lg:mr-20  md:mt-20"
-            imageHeight="md:h-[500px] h-[200px]"
-            imageWidth="md:w-[800px] sm:w-[600px] w-full"
-            onHoverStart={() => setHoveringImage(true)}
-            onHoverEnd={() => setHoveringImage(false)}
-          />
-          
-        </section>
+          Projects
+        </motion.h1>
+      </section>
+      <section className="flex flex-col gap-8 md:gap-32">
+        <ProjectItem
+          text="NFT App"
+          image="/nft-seller.png"
+          tags={["Frontend development", "UI design"]}
+          direction="items-start"
+          styles="md:items-start"
+          imageHeight="md:h-[500px] sm-[400px] h-[200px]"
+          imageWidth="md:w-[900px] sm:w-[600px] w-full"
+          onHoverStart={() => setHoveringImage(true)}
+          onHoverEnd={() => setHoveringImage(false)}
+        />
+        <ProjectItem
+          text="Brew Cafe"
+          image="/BrewCafe.png"
+          tags={["Frontend development", "UI design"]}
+          direction="items-end"
+          styles="lg:items-end  lg:mr-20  md:mt-20"
+          imageHeight="md:h-[500px] h-[200px]"
+          imageWidth="md:w-[800px] sm:w-[600px] w-full"
+          onHoverStart={() => setHoveringImage(true)}
+          onHoverEnd={() => setHoveringImage(false)}
+        />
+      </section>
     </motion.div>
   );
 }

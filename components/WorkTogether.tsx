@@ -69,14 +69,17 @@ export default function WorkTogether({}: Props) {
   const xFirstText = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"]);
   const xSecondText = useTransform(scrollYProgress, [0, 1], ["50%", "0%"]);
   const getInTouch = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const [isOpen,setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const onClose = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
   return (
     <div ref={containerRef} className="bg-[#151515]  relative min-h-screen">
       <div className="flex justify-center items-center w-full ">
-        <motion.div  className=" cursor-pointer   pt-32 text-center space-y-8" onClick={() => setIsOpen(true)}>
+        <motion.div
+          className=" cursor-pointer   pt-32 text-center space-y-8"
+          onClick={() => setIsOpen(true)}
+        >
           <motion.h1
             style={{ x: xFirstText }}
             className={`text-6xl text-white font-bold ${space_Grotesk.className}`}
@@ -120,9 +123,11 @@ export default function WorkTogether({}: Props) {
           </ul>
         </div>
       </div>
-    <AnimatePresence>
-      {isOpen && <WorkTogetherModal isOpen={isOpen} onClose={() => setIsOpen(false)} /> }
-    </AnimatePresence>
+      <AnimatePresence>
+        {isOpen && (
+          <WorkTogetherModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
