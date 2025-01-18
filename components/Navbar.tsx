@@ -7,13 +7,15 @@ import { AlignJustify } from "lucide-react";
 import { CiCircleCheck } from "react-icons/ci";
 import { format, toZonedTime } from "date-fns-tz";
 import { AnimatePresence, motion } from "motion/react";
-import WorkTogetherModal from "./ui/WorkTogetherModal";
 
-export default function Navbar() {
+type Props = {
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+}
+export default function Navbar({setIsOpen}:Props) {
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [isNavOpen, setIsNavOpen] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+    
   
   const [currentTheme, setCurrentTheme] = useState(
     typeof window !== "undefined"
@@ -81,6 +83,7 @@ export default function Navbar() {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
+      
       <Link href={"#"} className="text-secondary text-xl font-bold">
         StrayCat
       </Link>
@@ -149,7 +152,7 @@ export default function Navbar() {
 
         <button
           className="btn border-secondary lg:btn-md hover:btn-secondary duration-300"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen(true)}
         >
           Get in touch
         </button>
@@ -171,11 +174,7 @@ export default function Navbar() {
           />
         )}
       </AnimatePresence>
-         <AnimatePresence>
-              {isOpen  &&  (
-                <WorkTogetherModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-              )}
-            </AnimatePresence>
+
     </nav>
   );
 }

@@ -35,11 +35,11 @@ export default function RootLayout({
       <body
         className={`${montserrat.className}  bg-base-100 min-h-screen antialiased text-base-content`}
       >
-        <ToastProvider>
+ 
 
-        <Navbar />
-        <div className="">{children}</div>
-        </ToastProvider>
+ 
+       <div className="">{children}</div>
+ 
       </body>
     </html>
   );

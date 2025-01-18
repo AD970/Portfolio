@@ -13,12 +13,15 @@ import { cancelFrame, frame, type frameData } from "motion/react";
 import Lenis from "lenis";
 import PreLoader from "./PreLoader";
 import { ReactLenis, type LenisRef } from "lenis/react";
+import Navbar from "./Navbar";
+import WorkTogetherModal from "./ui/WorkTogetherModal";
 type Props = {};
 
 export default function Container({}: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<LenisRef | null>(null);
+  const [isOpen,setIsOpen] = useState(false)
   useEffect(() => {
     function update(time: typeof frameData) {
       lenisRef.current?.lenis?.raf(time.timestamp);
@@ -65,6 +68,8 @@ export default function Container({}: Props) {
     };
   }, []);
   return (
+    <>
+    <Navbar setIsOpen={setIsOpen}/>
     <ReactLenis
       root
       options={{
@@ -93,7 +98,13 @@ export default function Container({}: Props) {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+     {isOpen  &&  (
+       <WorkTogetherModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      )}
+   </AnimatePresence>
     </ReactLenis>
+      </>
   );
 }
 

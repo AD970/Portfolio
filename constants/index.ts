@@ -49,11 +49,11 @@ export const Projects: ProjectType[] = [
 export const workTogetherlinks = [
   {
     name: "Instagram",
-    link: "/",
+    link: "https://www.instagram.com/_ad970/",
   },
   {
     name: "Twitter",
-    link: "x.com",
+    link: "https://x.com/1StrayCat_",
   },
   {
     name: "LinkedIn",

@@ -4,8 +4,7 @@ import { motion } from "motion/react";
 import { menuSlide } from "../motion/SidebarAnime";
 import { X } from "lucide-react";
 import Link from "next/link";
-
-import { useToast } from "./ToastManager";
+import {  toast, ToastContainer } from 'react-toastify';
 import emailjs from "@emailjs/browser";
 type Props = {
   isOpen: boolean;
@@ -19,7 +18,6 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
   const [selectedBudget, setSelectedBudget] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const { addToast } = useToast();
 
   function toggleService(newService: string) {
     setSelectedServices((prevServices) => {
@@ -35,15 +33,15 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
   function toggleBudget(newBudget: string) {
     setSelectedBudget(newBudget);
   }
-
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-
+  
     const user_name = formData.get("user_name");
     const user_email = formData.get("user_email");
     const user_message = formData.get("user_message");
-    setLoading(true)
+    setLoading(true); // Start loading when the form is submitted
+  
     const templateParams = {
       user_name,
       user_email,
@@ -54,6 +52,7 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
           ? selectedServices.join(", ")
           : "No services selected",
     };
+  
     emailjs
       .send(
         process.env.NEXT_PUBLIC_SERVICE_ID || "",
@@ -63,18 +62,32 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
       )
       .then(
         () => {
-
-          setLoading(false);
-        addToast("Message sent successfully!");
+          setLoading(false); // Stop loading on success
+          toast("Message sent successfully!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "dark",
+          });
         },
         (error) => {
-          setLoading(false);
-          addToast("Something went wrong", 'destructive');
-
+          setLoading(false); // Stop loading on error
+          toast.error("Something went wrong", {
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "dark",
+          });
         },
       );
-      setLoading(false)
   };
+  
+  
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflowY = "hidden";
@@ -156,17 +169,18 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
           />
         </div>
         <button
-          disabled={loading || !selectedBudget || !selectedServices}
-          className="btn w-32  md:btn-md btn-primary mt-4"
-        >
-          {loading ? "Submitting..." : "Submit"}
-        </button>
+  disabled={loading || !selectedBudget || !selectedServices}
+  className="btn w-32 md:btn-md btn-primary mt-4"
+>
+  {loading ? "Submitting..." : "Submit"}
+</button>
+
       </form>
     );
   };
 
   return (
-    <div data-lenis-prevent className="relative">
+    <div data-lenis-prevent className="relative ">
       <div
         className="h-screen w-screen bg-black md:p-12   bg-opacity-50 fixed top-0 left-0 z-50"
         onClick={onClose}
@@ -183,7 +197,7 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
         >
           <div className="relative">
             <div
-              className="absolute md:-top-16 right-0 top-0 md:-right-4 btn-xs bg-black btn btn-outline btn-circle  "
+              className="absolute  right-0 top-0 md:-right-4 btn-xs bg-black btn btn-outline btn-circle  "
               onClick={onClose}
             >
               <X />
@@ -208,6 +222,7 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
           </div>
         </motion.div>
       </div>
+      <ToastContainer /> 
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import React from "react";
 import AnimatedCursor from "react-animated-cursor";
 import Container from "@/components/Container";
-import { ToastProvider } from "@/components/ui/ToastManager";
-
 type Props = {};
 
 export default function Home({}: Props) {
   return (
     <div className=" ">
+      
       <div className="hidden lg:block">
         <AnimatedCursor
           showSystemCursor={true}
@@ -33,6 +32,7 @@ export default function Home({}: Props) {
             ".btn",
           ]}
         />
+        
       </div>
       <Container />
 
