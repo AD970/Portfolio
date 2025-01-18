@@ -34,13 +34,7 @@ export default {
   daisyui: {
     themes: [
       "night",
-      "corporate",
-      "synthwave",
-      "retro",
-      "valentine",
-      "halloween",
-      "aqua",
-
+    "corporate",
       ,
     ],
   },

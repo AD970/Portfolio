@@ -26,17 +26,7 @@ const services = [
     type: "Design",
     index: 2,
   },
-  {
-    text: [
-      "SEO",
-      "Content Strategy",
-      "Social Media",
-      "Email Marketing",
-      "Analytics",
-    ],
-    type: "Marketing",
-    index: 3,
-  },
+
 ];
 
 export default function ServicesContainer() {
@@ -114,7 +104,7 @@ export function Services() {
               0{activeTypeIndex}
             </motion.h1>
             <span className="text-sm">—</span>
-            <span className="text-sm">03</span>
+            <span className="text-sm">02</span>
           </motion.div>
           <motion.p
             className="mt-8 max-w-md text-gray-600"
@@ -123,7 +113,7 @@ export function Services() {
             transition={{ delay: 0.5 }}
           >
             I'm here to help you turn ideas into something real and meaningful—
-            whether that's understanding your audience, shaping a standout
+            whether shaping a standout
             product, or crafting digital experiences that truly connect.
           </motion.p>
         </div>
@@ -131,7 +121,7 @@ export function Services() {
 
       {/* Right scrolling section */}
       <div className="w-full md:w-1/2 p-8 md:p-16 flex items-center">
-        <div className="space-y-32 py-32 overflow-hidden">
+        <div className="lg:space-y-18 py-8 space-y-8 md:py-12 md:space-y-12 lg:py-18 overflow-hidden">
           {services.map((service, index) => {
             const y = useTransform(
               scrollYProgress,
@@ -154,7 +144,7 @@ export function Services() {
                 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl flex flex-col gap-6 font-light"
                 style={{ y, opacity }}
               >
-                <span className="md:hidden text-zinc-950 border-b text-3xl border-zinc-50 font-bold">
+                <span className="md:hidden text-zinc-950  text-3xl  font-bold">
                   {service.type}
                 </span>
                 {service.text.map((item) => (

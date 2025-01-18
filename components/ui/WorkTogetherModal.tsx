@@ -5,9 +5,7 @@ import { menuSlide } from "../motion/SidebarAnime";
 import { X } from "lucide-react";
 import Link from "next/link";
 
-import { SendEmail } from "@/_actions/Contact";
 import { useToast } from "./ToastManager";
-import { useFormStatus } from "react-dom";
 import emailjs from "@emailjs/browser";
 type Props = {
   isOpen: boolean;

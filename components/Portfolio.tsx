@@ -27,7 +27,7 @@ export function Portfolio() {
 
             <Reveal>
               <p className="max-w-md">
-                I love design and anything related to art. I approach problems
+                I love Coding and anything related to art. I approach problems
                 in a rational and pragmatic way and seek the simplest and most
                 functional solution possible.
               </p>
@@ -39,7 +39,7 @@ export function Portfolio() {
                   <li>TIK: @_straycat</li>
                 </Reveal>
                 <Reveal>
-                  <li>IG: @yourname</li>
+                  <li>IG: @_ad970</li>
                 </Reveal>
                 <Reveal>
                   <li>LI: /in/yourname</li>

@@ -77,11 +77,6 @@ export const workTogetherlinks = [
 export const themes = [
   "corporate",
   "night",
-  "synthwave",
-  "retro",
-  "valentine",
-  "halloween",
-  "aqua",
-
+  
   ,
 ];

@@ -7,11 +7,14 @@ import { AlignJustify } from "lucide-react";
 import { CiCircleCheck } from "react-icons/ci";
 import { format, toZonedTime } from "date-fns-tz";
 import { AnimatePresence, motion } from "motion/react";
+import WorkTogetherModal from "./ui/WorkTogetherModal";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [isNavOpen, setIsNavOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+  
   const [currentTheme, setCurrentTheme] = useState(
     typeof window !== "undefined"
       ? localStorage.getItem("theme") || "light"
@@ -144,16 +147,16 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <Link
+        <button
           className="btn border-secondary lg:btn-md hover:btn-secondary duration-300"
-          href={"#contact"}
+            onClick={() => setIsOpen(!isOpen)}
         >
           Get in touch
-        </Link>
+        </button>
       </ul>
 
       <button
-        className="btn md:hidden"
+        className="btn btn-ghost md:hidden"
         onClick={() => setIsNavOpen((prev) => !prev)}
       >
         <AlignJustify />
@@ -168,6 +171,11 @@ export default function Navbar() {
           />
         )}
       </AnimatePresence>
+         <AnimatePresence>
+              {isOpen  &&  (
+                <WorkTogetherModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+              )}
+            </AnimatePresence>
     </nav>
   );
 }
@@ -242,12 +250,12 @@ const MobileNav = ({
           <div
             tabIndex={0}
             role="button"
-            className="flex items-center gap-2   text-3xl text-base-content"
+            className=" flex gap-2 items-center justify-center  text-3xl text-base-content"
           >
             Theme
             <svg
-              width="12px"
-              height="12px"
+              width="30px"
+              height="30x"
               className="inline-block h-2 w-2 fill-current opacity-60"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 2048 2048"

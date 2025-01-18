@@ -8,7 +8,6 @@ type Props = {};
 export default function Home({}: Props) {
   return (
     <div className=" ">
-        <ToastProvider>
       <div className="hidden lg:block">
         <AnimatedCursor
           showSystemCursor={true}
@@ -37,7 +36,6 @@ export default function Home({}: Props) {
       </div>
       <Container />
 
-      </ToastProvider>
     </div>
   );
 }

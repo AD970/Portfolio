@@ -76,22 +76,13 @@ export default function Container({}: Props) {
       }}
       ref={lenisRef}
     >
-      <div ref={containerRef} id="scroll-container">
+            <div ref={containerRef} id="scroll-container">
         <AnimatePresence mode="wait">
           {isLoading && <PreLoader />}
         </AnimatePresence>
         <Portfolio />
-
         <Landing />
         <div className="">
-          {/* <motion.div onClick={() => setIsSide(!isSide)} className={` duration-300  transition-all hover:text-primary-content bg-white fixed text-black hover:bg-primary  cursor-pointer  flex items-center justify-center lg:top-16 mt-6 md:top-9 top-6 right-4 p-4 h-[80px] w-[80px] z-[1000] rounded-full  ${isInView ? 'scale-100 ' : 'scale-0'}`}>
-        
-        <MenuIcon />
-        
-      </motion.div>
-      <AnimatePresence mode="wait">
-        {isSide && <Sidebar  />}
-      </AnimatePresence> */}
           <MovingIcons />
           <MySkills />
           <MyProjects />
@@ -106,29 +97,3 @@ export default function Container({}: Props) {
   );
 }
 
-// const buttonRef = useRef<HTMLDivElement>(null);
-// const isInView = useInView(buttonRef,{amount: 'some'});
-// const [prevScrollY, setPrevScrollY] = useState(0);
-// const [isVisible, setIsVisible] = useState(true);
-// const [isSide, setIsSide] = useState(false);
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const currentScrollY = window.scrollY;
-
-//       if (currentScrollY > prevScrollY && currentScrollY > 50) {
-//         // Hide navbar when scrolling down
-//         setIsVisible(false);
-//       } else {
-//         // Show navbar when scrolling up
-//         setIsVisible(true);
-//       }
-
-//       setPrevScrollY(currentScrollY);
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, [prevScrollY]);

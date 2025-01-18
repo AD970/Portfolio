@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cascadia-code/scroll-to-hash-element": "^2.0.3",
     "@emailjs/browser": "^4.4.1",
     "@mariojgt/wind-notify": "^1.0.0",
     "@next/font": "^14.2.15",
