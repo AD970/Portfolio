@@ -119,7 +119,7 @@ const ProjectItem = ({
       className={`mb-9 flex flex-col pb-9  items-center sm:${direction}  md:p-0 md:px-8 md:${styles} md:${direction}`}
     >
       <div className="">
-        <Link href={"/projects"}>
+        <Link href={"#projects"}>
           <motion.div
             onHoverStart={onHoverStart}
             onHoverEnd={onHoverEnd}

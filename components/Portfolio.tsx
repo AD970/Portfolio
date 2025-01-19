@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useState } from "react";
 import Reveal from "./motion/Reveal";
+import Link from "next/link";
 export function Portfolio() {
   const [step, setStep] = useState(0);
   return (
@@ -42,7 +43,7 @@ export function Portfolio() {
                   <li>IG: @_ad970</li>
                 </Reveal>
                 <Reveal>
-                  <li>LI: /in/yourname</li>
+                  <li>LI:<Link href={'https://www.linkedin.com/in/ahmed-farouk-omar/'}> Ahmed Farouk</Link> </li>
                 </Reveal>
               </ul>
             </div>

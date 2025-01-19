@@ -52,26 +52,20 @@ export const workTogetherlinks = [
     link: "https://www.instagram.com/_ad970/",
   },
   {
+    name: "Tiktok",
+    link: "https://www.tiktok.com/@_straycat"
+  },
+  {
     name: "Twitter",
     link: "https://x.com/1StrayCat_",
   },
   {
     name: "LinkedIn",
-    link: "",
+    link: "https://www.linkedin.com/in/ahmed-farouk-omar/",
   },
-  {
-    name: "Contact",
-    link: "",
-  },
+,
 
-  //     {
-  //     name: 'services',
-  //     link: '#services'
-  // },
-  //     {
-  //     name: 'skills',
-  //     link: '#skills'
-  // },
+
 ];
 
 export const themes = [
