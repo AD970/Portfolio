@@ -213,7 +213,7 @@ export default function WorkTogetherModal({ isOpen, onClose }: Props) {
                 <div className="divider"></div>
                 <p className="-mt-4">
                   Or send me an{" "}
-                  <Link href={""} className=" link">
+                  <Link href={"mailto:straycat.tx@gmail.com"} className=" link">
                     email
                   </Link>{" "}
                 </p>
