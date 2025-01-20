@@ -65,16 +65,18 @@ export default function WorkTogether({}: Props) {
         <div className="">
           <h1 className="text-gray-400">Socials</h1>
           <ul className="flex  gap-4 flex-col md:flex-row ">
-            {workTogetherlinks.map((link) => (
-              <li key={link.name} className="group inline-block relative">
-                <Link
-                  className="relative  inline-block text-lg font-semibold text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-                  href={link.link}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {workTogetherlinks.map((link) => 
+              link && (
+                <li key={link.name} className="group inline-block relative">
+                  <Link
+                    className="relative  inline-block text-lg font-semibold text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                    href={link.link}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
       </div>
